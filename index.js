@@ -2,13 +2,21 @@ const express = require("express");
 const logger = require("morgan");
 const app = express();
 const port = 3000;
+
+const indexRouter = require("./routes/index");
+const teamRouter = require("./routes/team");
+const userRouter = require("./routes/users");
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.get("/", (req, res) => {
-  res.send("hello world!");
-});
+
+app.use("/", indexRouter);
+app.use("/team", teamRouter);
+app.use("/users", userRouter);
+
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
 });
+
 module.exports = app;
