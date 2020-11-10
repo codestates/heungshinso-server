@@ -7,10 +7,12 @@ const indexRouter = require("./routes/index");
 const teamRouter = require("./routes/team");
 const userRouter = require("./routes/users");
 
+//middlewares
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//mvc patterns
 app.use("/", indexRouter);
 app.use("/team", teamRouter);
 app.use("/users", userRouter);
