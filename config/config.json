@@ -2,21 +2,25 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "heungshinso_development",
+    "database": "hueng_server_db",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false,
+      "underscored" : false
+  }
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "heungshinso_test",
+    "database": "hueng_server_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "heungshinso_production",
+    "database": "hueng_server_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

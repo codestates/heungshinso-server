@@ -1,40 +1,64 @@
-"use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
-  class user extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      models.user.hasMany(models.user_team, {
-        sourceKey: "id",
-        foreignKey: "userId",
-      });
-      models.user.hasMany(models.team, {
-        sourceKey: "id",
-        foreignKey: "userId",
-      });
+/* jshint indent: 2 */
 
-      // define association here
-    }
-  }
-  user.init(
-    {
-      username: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      phone_number: DataTypes.STRING,
-      birthday: DataTypes.INTEGER,
-      user_region: DataTypes.STRING,
-      user_position: DataTypes.STRING,
-      user_status: DataTypes.STRING,
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('user', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
     },
-    {
-      sequelize,
-      modelName: "user",
+    username: {
+      type: DataTypes.STRING(255),
+      allowNull: false
+    },
+    create_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    email: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    password: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    phone_number: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    birth: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    user_region: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    user_position: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    user_status: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
-  );
-  return user;
+  }, {
+    sequelize,
+    tableName: 'user',
+    timestamps: false,
+    indexes: [
+      {
+        name: "PRIMARY",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "id" },
+        ]
+      },
+    ]
+  });
 };
