@@ -1,57 +1,25 @@
-/* jshint indent: 2 */
-
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('user_team', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
-    team_content_Id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'team',
-        key: 'id'
-      }
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class user_team extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
-  }, {
-    sequelize,
-    tableName: 'user_team',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "team_content_Id",
-        using: "BTREE",
-        fields: [
-          { name: "team_content_Id" },
-        ]
-      },
-      {
-        name: "userId",
-        using: "BTREE",
-        fields: [
-          { name: "userId" },
-        ]
-      },
-    ]
-  });
+  }
+  user_team.init(
+    {
+      userId: DataTypes.INTEGER,
+      team_content_Id: DataTypes.INTEGER,
+    },
+    {
+      sequelize,
+      modelName: "user_team",
+    }
+  );
+  return user_team;
 };
