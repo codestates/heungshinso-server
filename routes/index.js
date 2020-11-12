@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const models = require('../models');
+const models = require("../models");
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   models.user
     .findAll()
     .then((userResult) => {
@@ -10,15 +10,15 @@ router.get('/', (req, res) => {
         models.team.findAll().then((teamResult) => {
           if (teamResult) {
             const resultObj = {};
-            resultObj['user'] = userResult;
-            resultObj['team'] = teamResult;
+            resultObj["user"] = userResult;
+            resultObj["team"] = teamResult;
             res.status(200).json(resultObj);
           } else {
-            res.status(500).send('팀 데이터가 없습니다.');
+            res.status(500).send("팀 데이터가 없습니다.");
           }
         });
       } else {
-        res.status(500).send('유저 데이터가 없습니다.');
+        res.status(500).send("유저 데이터가 없습니다.");
       }
     })
     .catch((error) => {
