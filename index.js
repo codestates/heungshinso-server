@@ -6,13 +6,14 @@ const port = 3000;
 const cors = require("cors");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 const indexRouter = require("./routes/index");
 const teamRouter = require("./routes/team");
 const userRouter = require("./routes/users");
 //db
-// const sequelize = require("./models/index").sequelize;
-// sequelize.sync();
+const sequelize = require("./models/index").sequelize;
+sequelize.sync();
 
 //middlewares
 app.use(cors());
