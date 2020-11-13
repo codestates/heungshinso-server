@@ -11,10 +11,21 @@ require("dotenv").config();
 const indexRouter = require("./routes/index");
 const teamRouter = require("./routes/team");
 const userRouter = require("./routes/users");
+
 //db
 const sequelize = require("./models/index").sequelize;
 sequelize.sync();
 
+//session
+app.use(cookieParser("@heungshin"));
+app.use(
+  session({
+    secret: "@heungshin",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { httpOnly: true, secure: true },
+  })
+);
 //middlewares
 app.use(cors());
 app.use(logger("dev"));
