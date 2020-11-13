@@ -1,4 +1,5 @@
 "use strict";
+const crypto = require("crypto");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
@@ -27,5 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "user",
     }
   );
+  user.addHook("beforeCreate", (data) => {
+    let salt = "random string";
+    let shasum = crypto.createHash("sha1");
+    shasum.update(data.password + salt);
+    data.password = shasum.digest("hex");
+  });
   return user;
 };
