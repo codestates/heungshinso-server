@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
           user_position: user_position,
           user_status: user_status,
         },
-        { where: { id: userId } }
+        { where: { id: session.userId } }
       )
       .then(res.status(200).send("등록되었습니다."));
   } catch (error) {
