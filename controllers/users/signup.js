@@ -10,9 +10,9 @@ module.exports = async (req, res) => {
         if (data) {
           res.status(409).send("email이 존재합니다.");
         } else {
-          users
-            .create({ email: email, password: password })
-            .then((data) => res.status(201).send(data));
+          users.create({ email: email, password: password }).then((data) => {
+            res.status(201).send(data);
+          });
         }
       });
     } catch (error) {

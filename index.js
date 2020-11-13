@@ -17,17 +17,23 @@ const sequelize = require("./models/index").sequelize;
 sequelize.sync();
 
 //session
-app.use(cookieParser("@heungshin"));
+app.use(cookieParser());
 app.use(
   session({
     secret: "@heungshin",
     resave: false,
     saveUninitialized: true,
-    cookie: { httpOnly: true, secure: true },
+    cookie: { secure: true },
   })
 );
 //middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
