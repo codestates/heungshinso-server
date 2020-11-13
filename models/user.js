@@ -30,29 +30,29 @@ module.exports = (sequelize, DataTypes) => {
   );
   //hook
   //회원가입할때시 비밀번호 해쉬
-  user.addHook("beforeCreate", (data) => {
-    let salt = "random string";
-    let shasum = crypto.createHash("sha1");
-    shasum.update(data.password + salt);
-    data.password = shasum.digest("hex");
-  });
-  //회원정보수정시 비밀번호 해쉬
-  user.addHook("afterUpdate", (data) => {
-    let salt = "random string";
-    if (data.where.password) {
-      let shasum = crypto.createHash("sha1");
-      shasum.update(data.where.password + salt);
-      data.where.password = shasum.digest("hex");
-    }
-  });
-  //로그인할때시 비밀번호 해쉬
-  user.addHook("beforeFind", (data) => {
-    let salt = "random string";
-    if (data.where.password) {
-      let shasum = crypto.createHash("sha1");
-      shasum.update(data.where.password + salt);
-      data.where.password = shasum.digest("hex");
-    }
-  });
+  // user.addHook("beforeCreate", (data) => {
+  //   let salt = "random string";
+  //   let shasum = crypto.createHash("sha1");
+  //   shasum.update(data.password + salt);
+  //   data.password = shasum.digest("hex");
+  // });
+  // //회원정보수정시 비밀번호 해쉬
+  // user.addHook("afterUpdate", (data) => {
+  //   let salt = "random string";
+  //   if (data.where.password) {
+  //     let shasum = crypto.createHash("sha1");
+  //     shasum.update(data.where.password + salt);
+  //     data.where.password = shasum.digest("hex");
+  //   }
+  // });
+  // //로그인할때시 비밀번호 해쉬
+  // user.addHook("beforeFind", (data) => {
+  //   let salt = "random string";
+  //   if (data.where.password) {
+  //     let shasum = crypto.createHash("sha1");
+  //     shasum.update(data.where.password + salt);
+  //     data.where.password = shasum.digest("hex");
+  //   }
+  // });
   return user;
 };

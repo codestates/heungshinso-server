@@ -7,6 +7,7 @@ const clientID = process.env.GITHUB_CLIENT_ID;
 const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 module.exports = {
   get: (req, res) => {
+    console.log("hello");
     const requestToken = req.query.code;
     axios({
       method: 'post',
@@ -18,7 +19,7 @@ module.exports = {
       console.dir(response.data);
       const accessToken = response.data.access_token;
       res.send(accessToken);
-      res.redirect(`https://a9fc3f29f0b1.ngrok.io/?access_Token=${accessToken}`);
+      res.redirect(`http://mylocalbuket.s3-website.ap-northeast-2.amazonaws.com/?access_Token=${accessToken}`);
     });
   },
 };
