@@ -1,6 +1,3 @@
-module.exports = async (req, res) => {
-  let session = req.session;
-  session.destroy();
-  res.redirect("/");
+module.exports = (req, res) => {
   res.send("signout");
 };
