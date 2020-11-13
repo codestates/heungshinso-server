@@ -26,6 +26,7 @@ app.use("/", indexRouter);
 app.use("/team", teamRouter);
 app.use("/users", userRouter);
 
+
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
 });
