@@ -3,7 +3,7 @@ const users = require("../../models").user;
 module.exports = async (req, res) => {
   const session = req.session;
   const {
-    email,
+    //email,
     password,
     username,
     phone_number,
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     user_region,
     user_position,
     user_status,
-    userId,
+    //userId,
   } = req.body;
   try {
     await users
