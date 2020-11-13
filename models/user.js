@@ -36,22 +36,13 @@ module.exports = (sequelize, DataTypes) => {
     shasum.update(data.password + salt);
     data.password = shasum.digest("hex");
   });
-  //회원정보수정시 비밀번호 해쉬
-  user.addHook("afterUpdate", (data) => {
+  // 회원정보수정시 비밀번호 해쉬
+  user.beforeBulkUpdate(async (data) => {
     let salt = "random string";
-    if (data.where.password) {
-      let shasum = crypto.createHash("sha1");
-      shasum.update(data.where.password + salt);
-      data.where.password = shasum.digest("hex");
-    }
-  });
-  //로그인할때시 비밀번호 해쉬
-  user.addHook("beforeFind", (data) => {
-    let salt = "random string";
-    if (data.where.password) {
-      let shasum = crypto.createHash("sha1");
-      shasum.update(data.where.password + salt);
-      data.where.password = shasum.digest("hex");
+    let shasum = crypto.createHash("sha1");
+    if (data.attributes.password) {
+      await shasum.update(data.attributes.password + salt);
+      data.attributes.password = shasum.digest("hex");
     }
   });
   return user;
