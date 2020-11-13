@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
         if (!user) {
           res.status(404).send("해당하는 유저가 없거나 비밀번호가 틀립니다.");
         } else {
-          session.userid = user.id;
+          session.userId = user.id;
           res.status(200).send({ id: user.id });
         }
       });
