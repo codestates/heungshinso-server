@@ -3,7 +3,7 @@ const client_id = process.env.NAVER_CLIENT_ID; //개발자센터에서 발급받
 const client_secret = process.env.NAVER_CLIENT_SECRET; //개발자센터에서 발급받은 Client Secret
 let state = '12345'; // random 문자열
 const redirectURI = encodeURI(
-  'https://fc95d3511f1f.ngrok.io/users/signin/naverlogin/callback'
+  'http://3.35.21.164:3000/users/signin/naverlogin/callback'
 );
 let api_url = '';
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
     };
     request.get(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.redirect(`https://fc95d3511f1f.ngrok.io/?access_token=${body}`);
+        res.redirect(`https://d2z76t8ifhgwqt.cloudfront.net/?access_token=${body}`);
       } else {
         res.status(response.statusCode).end();
         console.log('error = ' + response.statusCode);

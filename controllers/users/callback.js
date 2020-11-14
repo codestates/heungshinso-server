@@ -17,7 +17,7 @@ module.exports = {
     }).then((response) => {
       console.dir(response.data);
       const accessToken = response.data.access_token;
-      res.redirect(`http://mylocalbuket.s3-website.ap-northeast-2.amazonaws.com/?access_Token=${accessToken}`);
+      res.redirect(`https://d2z76t8ifhgwqt.cloudfront.net/?access_Token=${accessToken}`);
     });
   },
 };
