@@ -3,8 +3,8 @@ const client_id = process.env.KAKAO_CLIENT_ID; //개발자센터에서 발급받
 const client_secret = process.env.KAKAO_CLIENT_SECRET; //개발자센터에서 발급받은 Client Secret
 const axios = require('axios');
 const qs = require('qs');
-const mainUri = 'https://41c8fb3436e7.ngrok.io';
-const redirectURI = encodeURI(`${mainUri}users/signin/kakaologin/callback`);
+const mainUri = 'https://d2z76t8ifhgwqt.cloudfront.net';
+const redirectURI = encodeURI(`${mainUri}/users/signin/kakaologin/callback`);
 let api_url = '';
 let kakaoToken;
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
     })
       .then((response) => {
         kakaoToken = response.data;
-        res.redirect(`${mainUri}users/signin/kakaologin/callback/userinfo`);
+        res.redirect(`${mainUri}/users/signin/kakaologin/callback/userinfo`);
       })
       .catch((err) => console.log(err));
   },
@@ -51,27 +51,7 @@ module.exports = {
       },
     })
       .then((response) => {
-        // const kakaoUserId = response.data.id;
-        // const kakaoUserConnectedAt = response.data.connected_at;
-        // const kakaoUserNickName = response.data.kakao_account.profile.nickname;
-        // const kakaoUserBirthDay = response.data.birtyday;
-        // const kakaoUserGender = response.data.gender;
-        // console.log(response.data);
-        // res.cookie(
-        //   'kakaoUserId',
-        //   kakaoUserId
-        //   // 'kakaoUserConnectedAt',
-        //   // kakaoUserConnectedAt,
-        //   // 'kakaoUserNickName',
-        //   // kakaoUserNickName,
-        //   // 'kakaoUserBirthDay',
-        //   // kakaoUserBirthDay,
-        //   // 'kakaoUserGender',
-        //   // kakaoUserGender
-        // );
-        // // res.cookie('kakaoUserConnectedAt', kakaoUserConnectedAt);
         res.send(response.data);
-        // res.redirect(mainUri);
       })
       .catch((err) => console.log(err));
   },

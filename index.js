@@ -43,7 +43,7 @@ app.use(
 );
 //middlewares
 app.use(cors({
-  origin: 'https://41c8fb3436e7.ngrok.io', //https://d2z76t8ifhgwqt.cloudfront.net,
+  origin: 'https://d2z76t8ifhgwqt.cloudfront.net', //https://d2z76t8ifhgwqt.cloudfront.net,
   methods: ['GET', 'POST', 'OPTION', 'PUT', 'DELETE'],
   credentials: true,
 }));
