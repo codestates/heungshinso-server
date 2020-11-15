@@ -22,7 +22,7 @@ module.exports = {
         "'><img height='50' src='http://static.nid.naver.com/oauth/small_g_in.PNG'/></a>"
     );
   },
-  getcallback: (req, res) => {
+  callback: (req, res) => {
     code = req.query.code;
     state = req.query.state;
     api_url =
