@@ -27,7 +27,7 @@ const sequelize = require("./models/index").sequelize;
 sequelize.sync();
 
 //session
-app.use(cookieParser("@heungshin"));
+app.use(cookieParser());
 app.use(
   session({
     secret: "@heungshin",
@@ -47,6 +47,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'OPTION', 'PUT', 'DELETE'],
   credentials: true,
 }));
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
