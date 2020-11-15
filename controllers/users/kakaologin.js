@@ -3,7 +3,7 @@ const client_id = process.env.KAKAO_CLIENT_ID; //개발자센터에서 발급받
 const client_secret = process.env.KAKAO_CLIENT_SECRET; //개발자센터에서 발급받은 Client Secret
 const axios = require('axios');
 const qs = require('qs');
-const mainUri = 'https://d2z76t8ifhgwqt.cloudfront.net';
+const mainUri = 'http://3.35.21.164:3000';
 const redirectURI = encodeURI(`${mainUri}/users/signin/kakaologin/callback`);
 let api_url = '';
 let kakaoToken;
