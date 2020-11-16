@@ -7,6 +7,7 @@ const mainUri = 'http://3.35.21.164:3000';
 const redirectURI = encodeURI(`${mainUri}/users/signin/kakaologin/callback`);
 let api_url = '';
 let kakaoToken;
+let userData;
 module.exports = {
   get: (req, res) => {
     api_url =
@@ -51,8 +52,12 @@ module.exports = {
       },
     })
       .then((response) => {
-        res.send(response.data);
+        userData = response.data;
+        res.redirect(`https://d2z76t8ifhgwqt.cloudfront.net/users/kakaologin`);
       })
       .catch((err) => console.log(err));
   },
+  returnUser: (req, res) => {
+    res.send(userData);
+  }
 };
