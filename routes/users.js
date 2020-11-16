@@ -12,6 +12,8 @@ router.post("/profile", controller.profile);
 router.get("/signin/callback", callback.get);
 router.get("/signin/naverlogin", naver.get);
 router.get("/signin/naverlogin/callback", naver.callback);
+router.get("/signin/naverlogin/callback/userinfo", naver.userinfo);
+router.get("/naverlogin", naver.returnUser);
 router.get("/signin/kakaologin", kakao.get);
 router.get("/signin/kakaologin/callback", kakao.callback);
 router.get("/signin/kakaologin/callback/userinfo", kakao.userinfo);
