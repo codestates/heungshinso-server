@@ -15,5 +15,6 @@ router.get("/signin/naverlogin/callback", naver.callback);
 router.get("/signin/kakaologin", kakao.get);
 router.get("/signin/kakaologin/callback", kakao.callback);
 router.get("/signin/kakaologin/callback/userinfo", kakao.userinfo);
+router.get("/kakaologin", kakao.returnUser);
 
 module.exports = router;
