@@ -50,7 +50,7 @@ module.exports = {
     request.get(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
         token = body;
-        res.redirect(`${mainURI}/users/signin/naverlogin/callback/userinfo`);
+        res.redirect(`http://3.35.21.164:3000/users/signin/naverlogin/callback/userinfo`);
       } else {
         res.status(response.statusCode).end();
         console.log('error = ' + response.statusCode);
