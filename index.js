@@ -44,7 +44,8 @@ app.use(
 // app.use(cors());
 app.use(
   cors({
-    origin: true,
+    origin: 'https://d2z76t8ifhgwqt.cloudfront.net', 
+    methods: ['GET', 'POST', 'OPTION', 'PUT', 'DELETE'],
     credentials: true,
   })
 );
