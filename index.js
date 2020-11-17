@@ -1,26 +1,27 @@
 const express = require('express');
 const logger = require('morgan');
 const app = express();
-const fs = require('fs');
-const http = require('http');
-const https = require('https');
-const httpsPort = 443;
+// const fs = require('fs');
+// const http = require('http');
+// const https = require('https');
+// const httpsPort = 443;
 // const httpPort = 8001;
+const port = 3000;
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 const indexRouter = require('./routes/index');
-const teamRouter = require('./routes/team');
+const teamRouter = require('./routes/teams');
 const userRouter = require('./routes/users');
 
 // ssl 인증서
-const key = fs.readFileSync(__dirname + '/selfsigned.key');
-const cert = fs.readFileSync(__dirname + '/selfsigned.crt');
-const options = {
-  key: key,
-  cert: cert,
-};
+// const key = fs.readFileSync(__dirname + '/selfsigned.key');
+// const cert = fs.readFileSync(__dirname + '/selfsigned.crt');
+// const options = {
+//   key: key,
+//   cert: cert,
+// };
 
 //db
 const sequelize = require('./models/index').sequelize;
@@ -44,7 +45,7 @@ app.use(
 // app.use(cors());
 app.use(
   cors({
-    origin: '*',//'https://d2z76t8ifhgwqt.cloudfront.net', 
+    origin: 'https://d2z76t8ifhgwqt.cloudfront.net',
     methods: ['GET', 'POST', 'OPTION', 'PUT', 'DELETE'],
     credentials: true,
   })
@@ -58,20 +59,19 @@ app.use('/', indexRouter);
 app.use('/team', teamRouter);
 app.use('/users', userRouter);
 
-// app.listen(port, () => {
-//   console.log(`server listening on ${port}`);
-// });
-
-
-const httpsServer = https.createServer(options, app);
-const httpServer = http.createServer(app);
-
-httpsServer.listen(httpsPort, () => {
-  console.log('httpsServer starting on port : ' + httpsPort);
+app.listen(port, () => {
+  console.log(`server listening on ${port}`);
 });
 
-// httpServer.listen(httpPort, () => {
-//   console.log('httpServer starting on port : ' + httpPort);
+// const httpsServer = https.createServer(options, app);
+// const httpServer = http.createServer(app);
+
+// httpsServer.listen(httpsPort, () => {
+//   console.log('httpsServer starting on port : ' + httpsPort);
 // });
+
+// // httpServer.listen(httpPort, () => {
+// //   console.log('httpServer starting on port : ' + httpPort);
+// // });
 
 module.exports = app;
