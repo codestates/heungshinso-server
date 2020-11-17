@@ -4,8 +4,8 @@ const app = express();
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const httpsPort = 8000;
-const httpPort = 8001;
+const httpsPort = 3000;
+// const httpPort = 8001;
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -68,8 +68,8 @@ httpsServer.listen(httpsPort, () => {
   console.log('httpsServer starting on port : ' + httpsPort);
 });
 
-httpServer.listen(httpPort, () => {
-  console.log('httpServer starting on port : ' + httpPort);
-});
+// httpServer.listen(httpPort, () => {
+//   console.log('httpServer starting on port : ' + httpPort);
+// });
 
 module.exports = app;
