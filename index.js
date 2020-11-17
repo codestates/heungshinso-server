@@ -11,10 +11,10 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 const indexRouter = require("./routes/index");
-const teamRouter = require("./routes/team");
+const teamRouter = require("./routes/teams");
 const userRouter = require("./routes/users");
 
-// ssl 인증서 
+// ssl 인증서
 // const key = fs.readFileSync(__dirname + '/selfsigned.key');
 // const cert = fs.readFileSync(__dirname + '/selfsigned.crt');
 // const options = {
@@ -33,12 +33,12 @@ app.use(
     secret: "@heungshin",
     resave: true,
     saveUninitialized: true,
-    cookie : {
+    cookie: {
       secure: true,
       httpOnly: true,
       maxAge: 60 * 60 * 24 * 1000,
-      sameSite:'none',
-    }
+      sameSite: "none",
+    },
   })
 );
 //middlewares
@@ -49,9 +49,8 @@ app.use(express.urlencoded({ extended: false }));
 
 //mvc patterns
 app.use("/", indexRouter);
-app.use("/team", teamRouter);
+app.use("/teams", teamRouter);
 app.use("/users", userRouter);
-
 
 app.listen(port, () => {
   console.log(`server listening on ${port}`);
@@ -67,6 +66,5 @@ app.listen(port, () => {
 // httpServer.listen(httpPort, () => {
 //   console.log("httpServer starting on port : " + httpPort)
 // });
-
 
 module.exports = app;
