@@ -19,5 +19,4 @@ module.exports = async (req, res) => {
       console.error(error);
     }
   }
-  res.send("signup");
 };
