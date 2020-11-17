@@ -4,7 +4,7 @@ const app = express();
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const httpsPort = 400;
+const httpsPort = 443;
 // const httpPort = 8001;
 const cors = require('cors');
 const session = require('express-session');
@@ -44,7 +44,7 @@ app.use(
 // app.use(cors());
 app.use(
   cors({
-    origin: 'https://d2z76t8ifhgwqt.cloudfront.net', 
+    origin: '*',//'https://d2z76t8ifhgwqt.cloudfront.net', 
     methods: ['GET', 'POST', 'OPTION', 'PUT', 'DELETE'],
     credentials: true,
   })
