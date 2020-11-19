@@ -4,7 +4,6 @@ const crypto = require("crypto");
 module.exports = async (req, res) => {
   const { email, password } = req.body;
   const session = req.session;
-session", session);
   //로그인할때시 비밀번호 해쉬
   let salt = "random string";
   let shasum = crypto.createHash("sha1");
