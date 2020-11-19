@@ -1,11 +1,15 @@
 require('dotenv').config();
+const request = require('request');
 const client_id = process.env.NAVER_CLIENT_ID; //개발자센터에서 발급받은 Client ID
 const client_secret = process.env.NAVER_CLIENT_SECRET; //개발자센터에서 발급받은 Client Secret
 let state = '12345'; // random 문자열
+const mainURI = 'https://d2z76t8ifhgwqt.cloudfront.net';
 const redirectURI = encodeURI(
   'http://3.35.21.164:3000/users/signin/naverlogin/callback'
 );
 let api_url = '';
+var token;
+let userData;
 module.exports = {
   get: (req, res) => {
     api_url =
@@ -36,7 +40,6 @@ module.exports = {
       code +
       '&state=' +
       state;
-    const request = require('request');
     const options = {
       url: api_url,
       headers: {
@@ -46,11 +49,35 @@ module.exports = {
     };
     request.get(options, function (error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.redirect(`https://d2z76t8ifhgwqt.cloudfront.net/?access_token=${body}`);
+        token = body;
+        res.redirect(`http://3.35.21.164:3000/users/signin/naverlogin/callback/userinfo`);
       } else {
         res.status(response.statusCode).end();
         console.log('error = ' + response.statusCode);
       }
     });
+  },
+  userinfo: (req, res) => {
+    const header = 'Bearer ' + JSON.parse(token).access_token; // Bearer 다음에 공백 추가
+    const api_url = 'https://openapi.naver.com/v1/nid/me';
+    const options = {
+      url: api_url,
+      headers: { Authorization: header },
+    };
+    request.get(options, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        userData = body;
+        res.redirect(`${mainURI}/?naverlogin`);
+      } else {
+        console.log('error');
+        if (response != null) {
+          res.status(response.statusCode).end();
+          console.log('error = ' + response.statusCode);
+        }
+      }
+    });
+  },
+  returnUser: (req, res) => {
+    res.send(userData);
   },
 };

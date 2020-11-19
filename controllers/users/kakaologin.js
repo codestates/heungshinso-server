@@ -53,7 +53,7 @@ module.exports = {
     })
       .then((response) => {
         userData = response.data;
-        res.redirect(`https://d2z76t8ifhgwqt.cloudfront.net/users/kakaologin`);
+        res.redirect(`https://d2z76t8ifhgwqt.cloudfront.net/?kakaologin`);
       })
       .catch((err) => console.log(err));
   },

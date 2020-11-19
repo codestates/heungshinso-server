@@ -21,6 +21,7 @@ yarn-error.log*
 yarn.lock
 
 #SSL key, crt
-/**/.crt
-/**/.key
+selfsigned.crt
+selfsigned.key
+/**/.vscode/
 
