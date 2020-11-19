@@ -5,7 +5,7 @@ const app = express();
 // const http = require('http');
 // const https = require('https');
 
-const port = 3001;
+const port = 3000;
 // const httpPort = 3001;
 const cors = require("cors");
 const session = require("express-session");
