@@ -4,7 +4,6 @@ const crypto = require("crypto");
 module.exports = async (req, res) => {
   const { email, password } = req.body;
   const session = req.session;
-  console.log("session", session);
   //로그인할때시 비밀번호 해쉬
   let salt = "random string";
   let shasum = crypto.createHash("sha1");
@@ -18,6 +17,8 @@ module.exports = async (req, res) => {
           res.status(404).send("해당하는 유저가 없거나 비밀번호가 틀립니다.");
         } else {
           session.userId = user.id;
+          res.set("Set-Cooke", `session_userId=${session.userId}`);
+          console.log("session후", session);
           res.status(200).send(user);
         }
       });
