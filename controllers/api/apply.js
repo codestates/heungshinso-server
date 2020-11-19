@@ -4,6 +4,7 @@ const Op = sequelize.Op;
 //지원
 module.exports = async (req, res) => {
   const { resion, position, user_status } = req.query;
+  console.log("req.query========>", req.query);
   try {
     if (!resion && !position && !user_status) {
       await users.findAll().then((output) => res.send(output));

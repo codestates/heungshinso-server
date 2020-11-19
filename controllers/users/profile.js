@@ -11,10 +11,12 @@ module.exports = async (req, res) => {
     email,
   } = req.body;
   try {
+    console.log("profile-session===>", session);
     await users
       .update(
         {
           username: username,
+
           phone_number: phone_number,
           birthday: birthday,
           user_region: user_region,
