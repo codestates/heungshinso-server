@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
           res.status(404).send("해당하는 유저가 없거나 비밀번호가 틀립니다.");
         } else {
           session.userId = user.id;
+
           console.log(session.userId);
           res.cookie('id',session.userId);
           res.status(200).send(user);

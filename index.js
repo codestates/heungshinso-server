@@ -4,16 +4,17 @@ const app = express();
 // const fs = require('fs');
 // const http = require('http');
 // const https = require('https');
-// const httpsPort = 443;
-// const httpPort = 8001;
-const port = 3000;
-const cors = require('cors');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
 
-const indexRouter = require('./routes/index');
-const teamRouter = require('./routes/teams');
-const userRouter = require('./routes/users');
+const port = 3001;
+// const httpPort = 3001;
+const cors = require("cors");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+const indexRouter = require("./routes/index");
+const teamRouter = require("./routes/teams");
+const userRouter = require("./routes/users");
+const { or } = require("sequelize");
 
 // ssl 인증서
 // const key = fs.readFileSync(__dirname + '/selfsigned.key');
@@ -31,20 +32,23 @@ sequelize.sync();
 app.use(cookieParser());
 app.use(
   session({
+
+    secret: "@heungshin",
+
     resave: false,
     saveUninitialized: true,
     secret: '@heungshin',
     cookie: {
       httpOnly: true,
-      secure: true,
-      sameSite: 'none',
     },
   })
 );
 //middlewares
+
 // app.use(cors());
 app.use(cors());
 app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
